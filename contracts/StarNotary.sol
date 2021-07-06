@@ -4,17 +4,17 @@ pragma solidity ^0.8.0;
 import "../node_modules/openzeppelin-solidity/contracts/token/ERC721/ERC721.sol";
 
 // StarNotary Contract declaration inheritance the ERC721 openzeppelin implementation
-contract StarNotary is ERC721 {
+contract StarNotary is ERC721("Simple Star", "SS") {
 
     // Star data
     struct Star {
         string name;
+        string symbol;
     }
 
     // Implement Task 1 Add a name and symbol properties
     // name: Is a short name to your token
-    // symbol: Is a short string like 'USD' -> 'American Dollar'    
-    constructor(string memory _name, string memory _symbol) ERC721(_name, _symbol) {}
+    // symbol: Is a short string like 'USD' -> 'American Dollar'
 
     // mapping the Star with the Owner Address
     mapping(uint256 => Star) public tokenIdToStarInfo;
@@ -22,8 +22,8 @@ contract StarNotary is ERC721 {
     mapping(uint256 => uint256) public starsForSale;
 
     // Create Star using the Struct
-    function createStar(string memory _name, uint256 _tokenId) public { // Passing the name and tokenId as a parameters
-        Star memory newStar = Star(_name); // Star is an struct so we are creating a new Star
+    function createStar(string memory _name, string memory _symbol, uint256 _tokenId) public { // Passing the name and tokenId as a parameters
+        Star memory newStar = Star(_name, _symbol); // Star is an struct so we are creating a new Star
         tokenIdToStarInfo[_tokenId] = newStar; // Creating in memory the Star -> tokenId mapping
         _mint(msg.sender, _tokenId); // _mint assign the the star with _tokenId to the sender address (ownership)
     }
@@ -59,9 +59,9 @@ contract StarNotary is ERC721 {
     }
 
     // Implement Task 1 lookUptokenIdToStarInfo
-    function lookUptokenIdToStarInfo (uint _tokenId) public view returns (string memory) {
+    function lookUptokenIdToStarInfo(uint _tokenId) public view returns (Star memory) {
         //1. You should return the Star saved in tokenIdToStarInfo mapping
-        return tokenIdToStarInfo[_tokenId].name;
+        return tokenIdToStarInfo[_tokenId];
     }
 
     // Implement Task 1 Exchange Stars function

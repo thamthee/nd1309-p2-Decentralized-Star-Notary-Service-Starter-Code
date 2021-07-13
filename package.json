@@ -1,0 +1,12 @@
+{
+  "name": "nd1309-p2-Decentralized-Star-Notary-Service-Starter-Code",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/thamthee/nd1309-p2-Decentralized-Star-Notary-Service-Starter-Code.git",
+  "author": "Tham <thamtheera@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "truffle-hdwallet-provider": "^1.0.17"
+  }
+}

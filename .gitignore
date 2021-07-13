@@ -1,6 +1,6 @@
 .env
 .secret
-node_modules
+
 build
 # testing
 /coverage
